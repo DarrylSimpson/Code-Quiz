@@ -15,7 +15,7 @@
 
 ## Code I Used
 
-# I used a combination of HTML, CSS, and mostly JavaScript to do everything I needed on this page.
+* I used a combination of HTML, CSS, and mostly JavaScript to do everything I needed on this page.
 
 ## Images of My Page
 
