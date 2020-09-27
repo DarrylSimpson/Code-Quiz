@@ -54,6 +54,7 @@
      //Setting time for quiz based on how many questions there are. 50 seconds per question
      var time = questions.length * 50;
      var timerId;
+     var tempTime = time;
 
 
 
@@ -151,7 +152,7 @@
  }
 
  function endQuiz() {
-    var tempTime = time;
+    //var tempTime = time;
     var finalScore = document.createTextNode(tempTime);
 
     clearInterval(timerId);
@@ -161,7 +162,7 @@
     scoreEl.appendChild(finalScore);
     console.log(finalScore);
 
-    localStorage.setItem("savedScore", tempTime);
+    //localStorage.setItem("savedScore", tempTime);
   }
 
 function restartQuiz() {
@@ -179,15 +180,23 @@ function restartQuiz() {
   
 }
 
+function scoreSave() {
+
+  localStorage.setItem("name", "initialsEl");
+  localStorage.setItem("savedScore", tempTime);
+  console.log(initialsEl);
+  console.log(tempTime);
+
+}
+
 
 //pull local storage, add local high score, save back to loal storage (module 4.5.4-5.6)
 //save initials create another function to do that 
-//clear append on endscreen (remove appendChild*)
 //high score array, *list box, push to list box*
 
 
      startBtn.onclick = startQuiz;
      tryAgainEl.onclick = restartQuiz;
+     submitEl.onclick = scoreSave;
 
      //Save initials and score on click
-     //submitEl.onclick = ;
