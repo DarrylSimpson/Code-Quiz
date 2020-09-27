@@ -48,11 +48,10 @@
      var feedbackEl = document.getElementById("feedback");
      var endScreenEl = document.getElementById("end-screen");
      var tryAgainEl = document.getElementById("try-again");
-
      var scoreEl = document.getElementById("final-score");
 
 
-     //Setting time for quiz based on how many questions there are. 2seconds per question
+     //Setting time for quiz based on how many questions there are. 50 seconds per question
      var time = questions.length * 50;
      var timerId;
 
@@ -63,6 +62,8 @@
             questionsEl.removeAttribute("class");
             timerId = setInterval(startTimer, 1000);
             timerEl.textContent = time;
+
+            
             showQuestions();
 
     }
@@ -116,9 +117,9 @@
           // check if user guessed wrong
     if (this.value !== questions[currentQuestionIndex].answer) {
         // subtracting time when user gets question wrong 
-        time -= 50;
+        time -= 10;
 
-        if (time < 0) {
+        if (time <= 0) {
         time = 0;
         }
 
@@ -151,7 +152,7 @@
 
  function endQuiz() {
     var tempTime = time;
-    var finalScore = document.createTextNode(tempTime.toString());
+    var finalScore = document.createTextNode(tempTime);
 
     clearInterval(timerId);
     timerEl.textContent = time;
@@ -164,14 +165,25 @@
   }
 
 function restartQuiz() {
+
   //debugger;
   var element = document.getElementById("header");
-  element.classList.toggle("hide");
+  
+  element.removeAttribute("class");
   endScreenEl.setAttribute("class", "hide");
   currentQuestionIndex = 0;
+  timerEl.textContent = "0";
+  time = questions.length * 50;
+  scoreEl.textContent = " ";
 
+  
 }
 
+
+//pull local storage, add local high score, save back to loal storage (module 4.5.4-5.6)
+//save initials create another function to do that 
+//clear append on endscreen (remove appendChild*)
+//high score array, *list box, push to list box*
 
 
      startBtn.onclick = startQuiz;
