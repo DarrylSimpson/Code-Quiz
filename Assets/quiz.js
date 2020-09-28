@@ -36,7 +36,7 @@
 
      var currentQuestionIndex = 0;
      var finalScore = 0;
-     var highScores = JSON.parse(window.localStorage.getItem("highscores")) || [];
+     //var highScores = JSON.parse(localStorage.getItem("highscores")) || [];
 
 
      var startBtn = document.getElementById("start-quiz");
@@ -50,6 +50,9 @@
      var endScreenEl = document.getElementById("end-screen");
      var tryAgainEl = document.getElementById("try-again");
      var scoreEl = document.getElementById("final-score");
+     
+     var highScoresEl = document.getElementById("high-scores-screen");
+     var currentScoreEl = document.getElementById("high-scores");
 
 
 
@@ -179,23 +182,34 @@ function restartQuiz() {
 
   
 }
+//var displayHighScore = [];
 
 function scoreSave() {
+  var highScores = JSON.parse(localStorage.getItem("highscores")) || [];
+
+  var tempScore = highScores;
+  var scoreList = document.createTextNode(tempScore);
   tempTime = time; 
   
-
   var submittedScore = {
-    name: initialsEl.textContent,
+    name: initialsEl.value,
     score: tempTime
   };
 
   highScores.push(submittedScore);
   localStorage.setItem("highscores", JSON.stringify(highScores));
   console.log(submittedScore);
-  //localStorage.setItem("High Scores", submittedScore);
-  
+  endScreenEl.setAttribute("class", "hide");
+  highScoresEl.removeAttribute("class");
+
+  highScores.toString();
+  currentScoreEl.appendChild(scoreList);
+
+
 
 }
+
+
 
 
 //pull local storage, add local high score, save back to loal storage (module 4.5.4-5.6)
