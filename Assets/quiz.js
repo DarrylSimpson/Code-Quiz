@@ -96,6 +96,7 @@ var timerId;
 
 //taking away a class that hides this text to show it when you click a button
 function startQuiz() {
+  //setting hide class to header to hide it and display questionsEl
   headerEl.setAttribute("class", "hide");
   questionsEl.removeAttribute("class");
   timerId = setInterval(startTimer, 1000);
@@ -106,6 +107,7 @@ function startQuiz() {
 
 }
 
+//start time and if statement to tell it to go to end screen when timer hits 0
 function startTimer() {
   time--;
   timerEl.textContent = time;
@@ -192,22 +194,24 @@ function endQuiz() {
   var tempTime = time;
   var finalScore = document.createTextNode(tempTime);
 
-  clearInterval(timerId);
+  clearInterval(timerId); //clearing the timer so it doesnt go into the negative
   timerEl.textContent = time;
+  //removing and setting hide classes to display items on the page
   endScreenEl.removeAttribute("class");
   questionsEl.setAttribute("class", "hide");
+  //placing score into a p tag on HTML
   scoreEl.appendChild(finalScore);
-  //console.log(finalScore);
 
 }
 
 //what happens when you click submit your score
 function scoreSave() {
-  var highScores = JSON.parse(localStorage.getItem("highscores")) || [];
+  var highScores = JSON.parse(localStorage.getItem("highscores")) || []; //retrieving highscores from local
 
 
   tempTime = time;
 
+  //object storing user inputted initials and final score 
   var submittedScore = {
     name: initialsEl.value,
     score: tempTime
@@ -216,7 +220,7 @@ function scoreSave() {
   highScores.push(submittedScore);
 
 
-
+  //created a forEach to make a <li> for each item stored in object
   highScores.forEach(function (score) {
     var li = document.createElement("li");
     li.textContent = score.name + " " + score.score;
@@ -224,18 +228,15 @@ function scoreSave() {
   });
 
 
-
+  //setting score to localStorage
   localStorage.setItem("highscores", JSON.stringify(highScores));
-  //console.log(submittedScore);
+  
+  //setting and removing hide class to hide and display what i want on the page after submit button is pressed
   currentScoreEl.removeAttribute("class");
   inputBoxEl.setAttribute("class", "hide");
   textFinalEl.setAttribute("class", "hide");
   overTextEl.innerHTML = "High Scores!";
   highScores.toString();
-
-
-
-
 
 }
 
@@ -244,25 +245,28 @@ function restartQuiz() {
 
   var element = document.getElementById("header");
 
+  //setting and removing the class "hide" so i can hide what i want from page and show what i want
   element.removeAttribute("class");
   endScreenEl.setAttribute("class", "hide");
   currentScoreEl.setAttribute("class", "hide");
   inputBoxEl.removeAttribute("class");
   textFinalEl.removeAttribute("class");
-  overTextEl.innerHTML = "QUIZ OVER!!";
+  overTextEl.innerHTML = "QUIZ OVER!!"; //setting the HTML text for the end screen to this
 
-
+  //resetting questions, timer, time, and score
   currentQuestionIndex = 0;
   timerEl.textContent = "0";
   time = questions.length * 6;
   scoreEl.textContent = " ";
 
+  //deleting the <li> made to display score list, so it doesn't keep pulling everything to list
+  //every time its run
   currentScoreEl.innerHTML = '';
 
 }
 
 
-//add listeners to all buttons
+//add listeners to all buttons, so on click they run a function.
 startBtn.onclick = startQuiz;
 tryAgainEl.onclick = restartQuiz;
 submitEl.onclick = scoreSave;
