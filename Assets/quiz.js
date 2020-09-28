@@ -197,9 +197,10 @@ function restartQuiz() {
 
 function scoreSave() {
   var highScores = JSON.parse(localStorage.getItem("highscores")) || [];
-
+  
   var tempScore = highScores;
   var scoreList = document.createTextNode(tempScore);
+  
   tempTime = time; 
   console.log(scoreList);
   
@@ -208,11 +209,12 @@ function scoreSave() {
     score: tempTime
   };
   
+  var p = document.createElement("p");
+  p.textContent(highScores[i].name + "" +highScores[i].score);
 
   highScores.push(submittedScore);
   localStorage.setItem("highscores", JSON.stringify(highScores));
   console.log(submittedScore);
-  //endScreenEl.setAttribute("class", "hide");
   currentScoreEl.removeAttribute("class");
   inputBoxEl.setAttribute("class", "hide");
   textFinalEl.setAttribute("class", "hide");
@@ -220,8 +222,10 @@ function scoreSave() {
 
   highScores.toString();
 
-  currentScoreEl.append(submittedScore.name);
-  currentScoreEl.append(submittedScore.score);
+  scoreEl.appendChild("p");
+
+  //currentScoreEl.append(submittedScore.name);
+  //currentScoreEl.append(submittedScore.score);
 
   
 
