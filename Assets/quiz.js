@@ -1,42 +1,41 @@
      var questions = [
         {
-            title: "Commonly used data types DO NOT include:",
-            choices: ["strings", "booleans", "alerts", "numbers"],
-            answer: "alerts"
+            title: "What is the funniest show on Netflix rite now?",
+            choices: ["Schitts Creek", "The Good Place", "The Office", "Workin' Moms"],
+            answer: "The Office"
           },
           {
-            title: "The condition in an if / else statement is enclosed within ____.",
-            choices: ["quotes", "curly brackets", "parentheses", "square brackets"],
-            answer: "parentheses"
+            title: "Whats the bosse's name?",
+            choices: ["John Smith", "Michael Scott", "Jim Halpert", "Dwight Schrute"],
+            answer: "Michael Scott"
           },
           {
-            title: "Arrays in JavaScript can be used to store ____.",
+            title: "Who bought Michael his 'World's best boss' Mug?",
             choices: [
-              "numbers and strings",
-              "other arrays",
-              "booleans",
-              "all of the above"
+              "Dwight",
+              "He bought it for himself",
+              "Pam",
+              "None of the above"
             ],
-            answer: "all of the above"
+            answer: "He bought it for himself"
           },
           {
             title:
-              "String values must be enclosed within ____ when being assigned to variables.",
-            choices: ["commas", "curly brackets", "quotes", "parentheses"],
-            answer: "quotes"
+              "What type of farm does Dwight own?",
+            choices: ["Carrot Farm", "Cow Farm", "Ant Farm", "Beet Farm"],
+            answer: "Beet Farm"
           },
           {
             title:
-              "A very useful tool used during development and debugging for printing content to the debugger is:",
-            choices: ["JavaScript", "terminal / bash", "for loops", "console.log"],
-            answer: "console.log"
+              "What did Pam and Angela both name their babies?",
+            choices: ["Phillip", "Andrew", "James", "William"],
+            answer: "Phillip"
           }
      ];
 
 
      var currentQuestionIndex = 0;
      var finalScore = 0;
-     //var highScores = JSON.parse(localStorage.getItem("highscores")) || [];
 
 
      var startBtn = document.getElementById("start-quiz");
@@ -193,7 +192,6 @@ function restartQuiz() {
 
   
 }
-//var displayHighScore = [];
 
 function scoreSave() {
   var highScores = JSON.parse(localStorage.getItem("highscores")) || [];
@@ -209,9 +207,15 @@ function scoreSave() {
     score: tempTime
   };
   
-  //var p = document.createElement("p");
-  //p.textContent(highScores[i].name + "" +highScores[i].score);
+ 
+  var list = document.createElement("ul");
+  highScores.forEach(function (highScores) {
+    var li = document.createElement("li");
+    li.textContent = highScores;
+    list.appendChild(li);
+  });
 
+  
   highScores.push(submittedScore);
   localStorage.setItem("highscores", JSON.stringify(highScores));
   console.log(submittedScore);
@@ -219,14 +223,18 @@ function scoreSave() {
   inputBoxEl.setAttribute("class", "hide");
   textFinalEl.setAttribute("class", "hide");
   overTextEl.innerHTML = "High Scores!";
+  
 
   highScores.toString();
 
   //scoreEl.appendChild("p");
   //window.location.href = "highscores.html"
 
-  currentScoreEl.append(submittedScore.name);
-  currentScoreEl.append(submittedScore.score);
+  //currentScoreEl.append();
+  currentScoreEl.appendChild(list);
+  //currentScoreEl.append(submittedScore.name);
+  //currentScoreEl.append(submittedScore.score);
+
 
   
 
@@ -234,14 +242,6 @@ function scoreSave() {
 
 
 
-
-//pull local storage, add local high score, save back to loal storage (module 4.5.4-5.6)
-//save initials create another function to do that 
-//high score array, *list box, push to list box*
-
-
      startBtn.onclick = startQuiz;
      tryAgainEl.onclick = restartQuiz;
      submitEl.onclick = scoreSave;
-
-     //Save initials and score on click
