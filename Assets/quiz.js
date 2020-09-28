@@ -50,10 +50,14 @@
      var endScreenEl = document.getElementById("end-screen");
      var tryAgainEl = document.getElementById("try-again");
      var scoreEl = document.getElementById("final-score");
+     var textFinalEl = document.getElementById("final-text");
      
      var highScoresEl = document.getElementById("high-scores-screen");
      var currentScoreEl = document.getElementById("high-scores");
+     var numberScoreEl = document.getElementById("high-score-number");
+     var overTextEl = document.getElementById("over-text");
 
+     var inputBoxEl = document.getElementById("input-box");
 
 
      //Setting time for quiz based on how many questions there are. 50 seconds per question
@@ -175,10 +179,17 @@ function restartQuiz() {
   
   element.removeAttribute("class");
   endScreenEl.setAttribute("class", "hide");
+  currentScoreEl.setAttribute("class", "hide");
+  inputBoxEl.removeAttribute("class");
+  textFinalEl.removeAttribute("class");
+  overTextEl.innerHTML = "QUIZ OVER!!";
+
+
   currentQuestionIndex = 0;
   timerEl.textContent = "0";
   time = questions.length * 50;
   scoreEl.textContent = " ";
+
 
   
 }
@@ -190,22 +201,29 @@ function scoreSave() {
   var tempScore = highScores;
   var scoreList = document.createTextNode(tempScore);
   tempTime = time; 
+  console.log(scoreList);
   
   var submittedScore = {
     name: initialsEl.value,
     score: tempTime
   };
+  
 
   highScores.push(submittedScore);
   localStorage.setItem("highscores", JSON.stringify(highScores));
   console.log(submittedScore);
-  endScreenEl.setAttribute("class", "hide");
-  highScoresEl.removeAttribute("class");
+  //endScreenEl.setAttribute("class", "hide");
+  currentScoreEl.removeAttribute("class");
+  inputBoxEl.setAttribute("class", "hide");
+  textFinalEl.setAttribute("class", "hide");
+  overTextEl.innerHTML = "High Scores!";
 
   highScores.toString();
-  currentScoreEl.appendChild(scoreList);
 
+  currentScoreEl.append(submittedScore.name);
+  currentScoreEl.append(submittedScore.score);
 
+  
 
 }
 

@@ -13,7 +13,10 @@
         <header id="header">
             <h1 class="page-title">Quiz</h1>
 
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magni aliquam, reiciendis suscipit enim velit laboriosam accusamus voluptates est doloribus maxime vitae ab doloremque mollitia quae, perspiciatis consequatur, alias autem omnis? Hit the button below to start your quiz</p>
+            <p>Hello! In this quiz there will be a series of multiple choice questions, answer to the best of you're ability.
+               You will have 60 seconds to take this Quiz, if you answer a question wrong there will be a 5 second deduction from the timer. 
+               Your score at the end will be your remaining time, if the timer hits 0 before you answer all the questions the game will be over. 
+               Hit the button below to start your quiz, ENJOY!</p>
 
             <button class="btn" id="start-quiz">Start Quiz!</button>
         </header>
@@ -25,12 +28,14 @@
               </div>
 
               <div id="end-screen" class="hide">
-                <h2>QUIZ OVER!!</h2>
-                <p>You Scored a <span id="final-score"></span>, NICE!</p>
-                <p>
+                <h2 id="over-text">QUIZ OVER!!</h2>
+                <p id="final-text">You Scored a <span id="final-score"></span>, NICE!</p>
+                <p id="high-scores" class="hide">Name: </p>
+                <p id="input-box">
                   Enter initials: <input type="text" id="initials" max="3" />
                   <button id="submit">Submit</button>
                 </p>
+                
                 <button id="try-again">Try Again?</button>
               </div>
 
