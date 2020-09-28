@@ -209,8 +209,8 @@ function scoreSave() {
     score: tempTime
   };
   
-  var p = document.createElement("p");
-  p.textContent(highScores[i].name + "" +highScores[i].score);
+  //var p = document.createElement("p");
+  //p.textContent(highScores[i].name + "" +highScores[i].score);
 
   highScores.push(submittedScore);
   localStorage.setItem("highscores", JSON.stringify(highScores));
@@ -222,10 +222,11 @@ function scoreSave() {
 
   highScores.toString();
 
-  scoreEl.appendChild("p");
+  //scoreEl.appendChild("p");
+  //window.location.href = "highscores.html"
 
-  //currentScoreEl.append(submittedScore.name);
-  //currentScoreEl.append(submittedScore.score);
+  currentScoreEl.append(submittedScore.name);
+  currentScoreEl.append(submittedScore.score);
 
   
 
