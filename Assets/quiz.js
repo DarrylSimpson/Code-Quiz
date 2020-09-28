@@ -36,6 +36,7 @@
 
      var currentQuestionIndex = 0;
      var finalScore = 0;
+     var highScores = JSON.parse(window.localStorage.getItem("highscores")) || [];
 
 
      var startBtn = document.getElementById("start-quiz");
@@ -51,10 +52,11 @@
      var scoreEl = document.getElementById("final-score");
 
 
+
      //Setting time for quiz based on how many questions there are. 50 seconds per question
      var time = questions.length * 50;
      var timerId;
-     var tempTime = time;
+     //var tempTime = time;
 
 
 
@@ -152,7 +154,7 @@
  }
 
  function endQuiz() {
-    //var tempTime = time;
+    var tempTime = time;
     var finalScore = document.createTextNode(tempTime);
 
     clearInterval(timerId);
@@ -162,12 +164,10 @@
     scoreEl.appendChild(finalScore);
     console.log(finalScore);
 
-    //localStorage.setItem("savedScore", tempTime);
   }
 
 function restartQuiz() {
 
-  //debugger;
   var element = document.getElementById("header");
   
   element.removeAttribute("class");
@@ -181,11 +181,19 @@ function restartQuiz() {
 }
 
 function scoreSave() {
+  tempTime = time; 
+  
 
-  localStorage.setItem("name", "initialsEl");
-  localStorage.setItem("savedScore", tempTime);
-  console.log(initialsEl);
-  console.log(tempTime);
+  var submittedScore = {
+    name: initialsEl.textContent,
+    score: tempTime
+  };
+
+  highScores.push(submittedScore);
+  localStorage.setItem("highscores", JSON.stringify(highScores));
+  console.log(submittedScore);
+  //localStorage.setItem("High Scores", submittedScore);
+  
 
 }
 
