@@ -28,7 +28,7 @@ var questions = [
   {
     title:
       "Which one of Angela's cats does Dwight freeze?",
-    choices: ["Spinkles", "Fluffy", "Bandit", "Garbage"],
+    choices: ["Sprinkles", "Fluffy", "Bandit", "Garbage"],
     answer: "Sprinkles"
   },
   {
@@ -39,7 +39,7 @@ var questions = [
       "Pam",
       "Maredith"
     ],
-    answer: "Meredith"
+    answer: "Maredith"
   },
   {
     title:
